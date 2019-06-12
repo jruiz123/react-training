@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
-class Timer extends Component {
+class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       curTime: new Date().toLocaleTimeString(),
-      name:'',
-      email:'',
+      name: '',
+      email: ''
     }
 
-    this.update = this.update.bind(this);
+    this.updateField = this.updateField.bind(this);
   }
   
   componentDidMount() {
@@ -17,12 +17,12 @@ class Timer extends Component {
       this.setState({
         curTime : new Date().toLocaleTimeString()
       })
-    },1000)
+    },1000);
   }
   
-  update(event) {
+  updateField(event) {
     const val = event.target.name;
-    this.setState({ val: event.target.val});
+    this.setState({ [val]: event.target.value});
   };
   
   
@@ -35,74 +35,30 @@ class Timer extends Component {
           </div>
         </div>
         <br />
-        <div class="row">
-          <div class="col-sm-5 card">
-            <div class="card-body">
-              <form>
+        <form>
+          <div class="row">
+              <div class="col">
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" onChange={this.update}/>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name" onChange={this.updateField}/>
                 </div>
                 <div class="form-group">
-                  <label for="emailLabel">Email address</label>
-                  <input type="email" class="form-control" id="emailLabel" aria-describedby="emailHelp" placeholder="Enter email"/>
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>            
-                <div class="form-group">
-                  <label for="passwordLabel">Password</label>
-                  <input type="password" class="form-control" id="passwordLabel" placeholder="Password" />
+                  <label for="email">Email address</label>
+                  <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" onChange={this.updateField}/>
                 </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="checkBoxLabel" />
-                  <label class="form-check-label" for="checkBoxLabel">Check me out</label>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="name1">Name</label>
+                  <input type="text" name="name1" class="form-control" id="name" value={this.state.name}/>
                 </div>
                 <div class="form-group">
-                  <label for="selectLabel">Example select</label>
-                  <select class="form-control" id="selectLabel">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+                  <label for="email1">Email address</label>
+                  <input type="email" class="form-control" id="email1" value={this.state.email} />
                 </div>
-              </form>
-            </div>
+              </div>
           </div>
-          <div class="offset-sm-2 col-sm-5 card">
-            <div class="card-body">
-              <form>
-                <div class="form-group">
-                  <label for="nameLabel">Name</label>
-                  <input type="text" class="form-control" id="nameLabel" value={this.state.name} disable/>
-                </div>
-                <div class="form-group">
-                  <label for="emailLabel">Email address</label>
-                  <input type="email" class="form-control" id="emailLabel" aria-describedby="emailHelp" placeholder="Enter email"/>
-                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>            
-                <div class="form-group">
-                  <label for="passwordLabel">Password</label>
-                  <input type="password" class="form-control" id="passwordLabel" placeholder="Password" />
-                </div>
-                <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="checkBoxLabel" />
-                  <label class="form-check-label" for="checkBoxLabel">Check me out</label>
-                </div>
-                <div class="form-group">
-                  <label for="selectLabel">Example select</label>
-                  <select class="form-control" id="selectLabel">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     );
   }
